@@ -32,7 +32,6 @@ namespace Web.Pages.Colegios
 
         public async Task OnGet()
         {
-            // REGIONES
             Regiones = await _context.Colegios
                 .Where(c => c.Region != null && c.Region != "")
                 .Select(c => c.Region)
@@ -40,7 +39,6 @@ namespace Web.Pages.Colegios
                 .OrderBy(c => c)
                 .ToListAsync();
 
-            // PROVINCIAS dependientes
             var provinciasQuery = _context.Colegios.AsQueryable();
             if (!string.IsNullOrEmpty(FiltroRegion))
                 provinciasQuery = provinciasQuery.Where(c => c.Region == FiltroRegion);
@@ -52,7 +50,6 @@ namespace Web.Pages.Colegios
                 .OrderBy(c => c)
                 .ToListAsync();
 
-            // CIUDADES dependientes
             var ciudadesQuery = _context.Colegios.AsQueryable();
             if (!string.IsNullOrEmpty(FiltroRegion))
                 ciudadesQuery = ciudadesQuery.Where(c => c.Region == FiltroRegion);
@@ -67,7 +64,6 @@ namespace Web.Pages.Colegios
                 .OrderBy(c => c)
                 .ToListAsync();
 
-            // FILTRADO final
             var query = _context.Colegios.AsQueryable();
 
             if (!string.IsNullOrEmpty(FiltroRegion))
