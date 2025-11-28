@@ -1,0 +1,93 @@
+﻿@page
+@model Web.Pages.Colegios.IndexModel
+
+<h1 class="mb-3">Listado de Colegios</h1>
+
+<form method="get" class="mb-4">
+
+    <div class="row">
+
+        <!-- REGIÓN -->
+        <div class="col-md-4">
+            <label>Región</label>
+            <select class="form-select" name="FiltroRegion" onchange="this.form.submit()">
+                <option value="">Todas</option>
+                @foreach (var region in Model.Regiones)
+                {
+                    <option value="@region" selected="@(region == Model.FiltroRegion)">
+                        @region
+                    </option>
+                }
+            </select>
+        </div>
+
+        <!-- PROVINCIA (dependiente) -->
+        <div class="col-md-4">
+            <label>Provincia</label>
+            <select class="form-select" name="FiltroProvincia" onchange="this.form.submit()">
+                <option value="">Todas</option>
+                @foreach (var prov in Model.Provincias)
+                {
+                    <option value="@prov" selected="@(prov == Model.FiltroProvincia)">
+                        @prov
+                    </option>
+                }
+            </select>
+        </div>
+
+        <!-- CIUDAD (dependiente) -->
+        <div class="col-md-4">
+            <label>Ciudad</label>
+            <select class="form-select" name="FiltroCiudad" onchange="this.form.submit()">
+                <option value="">Todas</option>
+                @foreach (var ciudad in Model.Ciudades)
+                {
+                    <option value="@ciudad" selected="@(ciudad == Model.FiltroCiudad)">
+                        @ciudad
+                    </option>
+                }
+            </select>
+        </div>
+
+    </div>
+
+</form>
+
+<!-- tabla aquí (no se cambia) -->
+
+
+    <table class="table table-striped table-hover table-bordered" style="min-width: 1600px;">
+        <thead class="table-light">
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Dirección</th>
+                <th>Teléfono</th>
+                <th>Correo</th>
+                <th>Sitio Web</th>
+                <th>Red Social</th>
+                <th>Sector</th>
+                <th>Ciudad</th>
+                <th>Provincia</th>
+                <th>Región</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.ListaColegios)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Nombre</td>
+                    <td>@item.Direccion</td>
+                    <td>@item.Telefono</td>
+                    <td>@item.Correo</td>
+                    <td>@item.SitioWeb</td>
+                    <td>@item.RedSocial</td>
+                    <td>@item.Sector</td>
+                    <td>@item.Ciudad</td>
+                    <td>@item.Provincia</td>
+                    <td>@item.Region</td>
+                </tr>
+            }
+        </tbody>
+    </table>
